@@ -1,0 +1,86 @@
+plugins {
+    id "application"
+    id "com.google.protobuf"
+    id "idea"
+}
+
+description = "jauntsdn-messagestreams: futures grpc client"
+
+compileJava {
+    sourceCompatibility = 11
+    targetCompatibility = 11
+}
+
+dependencies {
+    protobuf project(":messagestreams-service-idl")
+
+    implementation "com.google.protobuf:protobuf-java"
+    implementation "io.grpc:grpc-protobuf"
+    implementation "io.grpc:grpc-stub"
+    implementation "io.grpc:grpc-netty-shaded"
+    implementation "javax.annotation:javax.annotation-api"
+    implementation "org.slf4j:slf4j-api"
+
+    runtimeOnly "ch.qos.logback:logback-classic"
+}
+
+sourceSets {
+    main {
+        java { srcDir "src/generated" }
+    }
+}
+
+if (findProperty("generateProto") == "true") {
+    println "Generating services from IDL"
+
+    sourceSets {
+        main {
+            proto { srcDir "src/main/proto" }
+        }
+    }
+
+    protobuf {
+        generatedFilesBaseDir = "${projectDir}/src/generated"
+
+        protoc {
+            artifact = "com.google.protobuf:protoc"
+        }
+        plugins {
+            grpc {
+                artifact = "io.grpc:protoc-gen-grpc-java"
+            }
+        }
+        generateProtoTasks {
+            all()*.plugins { grpc {} }
+        }
+    }
+
+    clean {
+        delete "src/generated"
+    }
+
+} else {
+    tasks.whenTaskAdded { task ->
+        if (task.name.contains("generateProto")) {
+            task.enabled = false
+        }
+    }
+}
+
+idea {
+    module {
+        sourceDirs += file("src/main/proto")
+        sourceDirs += file("src/generated/main/java")
+        sourceDirs += file("src/generated/main/grpc")
+
+        generatedSourceDirs += file("src/generated/main/java")
+        generatedSourceDirs += file("src/generated/main/grpc")
+    }
+}
+
+mainClassName = "com.jauntsdn.messagestreams.futures.grpcclient.Main"
+
+task runMain(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = mainClassName
+}

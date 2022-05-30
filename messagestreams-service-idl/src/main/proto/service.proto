@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "futures";
+option java_outer_classname = "ServiceProto";
+
+package futures;
+
+import "google/protobuf/empty.proto";
+import "rsocket/options.proto";
+
+service Diner {
+
+  rpc order (Order) returns (Meal) {}
+
+  rpc pay (Payment) returns (google.protobuf.Empty) {
+         option (io.rsocket.rpc.options) = {
+                fire_and_forget: true
+              };
+  }
+}
+
+message Order {
+  string meal = 1;
+  int32 count = 2;
+}
+
+message Meal {
+  string meal = 1;
+  int32 count = 2;
+  float price = 3;
+  int64 paymentCode = 4;
+}
+
+message Payment {
+  int64 code = 1;
+  float amount = 2;
+}
