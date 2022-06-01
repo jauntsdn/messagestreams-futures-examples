@@ -28,12 +28,20 @@ public class Main {
     logger.info("==> FUTURES SERVICE, WEBSOCKET-HTTP2: {}", serviceWsHttp2Address);
     logger.info("==> FUTURES SERVICE, GRPC: {}", serviceGrpcAddress);
 
+    /*service are implemented in terms of CompletableFutures and generated Protobuf messages */
     Diner diner = new GoodDiner();
 
     ServerStreamsAcceptor acceptor =
         (setupMessage, messageStreams) ->
             CompletableFuture.completedFuture(
-                DinerServer.create(diner).withLifecycle(messageStreams));
+                    /*Generated boilerplate to bind service with MessageStreams*/
+                    DinerServer.create(diner)
+                        /*MessageStreams: basically
+                              CompletionStage<Message> requestReply(Message message)*/
+                        .withLifecycle(messageStreams));
+
+    /*Runtime - including network transports, metrics, load estimator may be trivially
+    * hidden from application developer*/
 
     /*TCP*/
     CompletionStage<Disposable> tcpServer =
