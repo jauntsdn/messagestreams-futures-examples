@@ -1,3 +1,4 @@
+[![Build](https://github.com/jauntsdn/message-streams-futures-examples/actions/workflows/ci-build.yml/badge.svg)](https://github.com/jauntsdn/message-streams-futures-examples/actions/workflows/ci-build.yml)
 ### Message-Streams with CompletableFutures
 
 Demo for [Message streams](https://github.com/jauntsdn/rsocket-jvm) services with familiar, widespread non-streaming API - jdk's `CompletableFutures`, 
