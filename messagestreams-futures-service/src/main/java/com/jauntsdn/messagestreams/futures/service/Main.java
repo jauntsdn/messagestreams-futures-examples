@@ -34,14 +34,14 @@ public class Main {
     ServerStreamsAcceptor acceptor =
         (setupMessage, messageStreams) ->
             CompletableFuture.completedFuture(
-                    /*Generated boilerplate to bind service with MessageStreams*/
-                    DinerServer.create(diner)
-                        /*MessageStreams: basically
-                              CompletionStage<Message> requestReply(Message message)*/
-                        .withLifecycle(messageStreams));
+                /*Generated boilerplate to bind service with MessageStreams*/
+                DinerServer.create(diner)
+                    /*MessageStreams: basically
+                    CompletionStage<Message> requestReply(Message message)*/
+                    .withLifecycle(messageStreams));
 
     /*Runtime - including network transports, metrics, load estimator may be trivially
-    * hidden from application developer*/
+     * hidden from application developer*/
 
     /*TCP*/
     CompletionStage<Disposable> tcpServer =
