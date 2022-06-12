@@ -82,5 +82,5 @@ mainClassName = "com.jauntsdn.messagestreams.futures.grpcclient.Main"
 
 task runMain(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
-    main = mainClassName
+    mainClass = mainClassName
 }
