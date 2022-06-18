@@ -7,7 +7,7 @@ plugins {
     id "idea"
 }
 
-description = "jauntsdn-messagestreams: futures service definitions"
+description = "jauntsdn-messageStreams: futures service definitions"
 
 protobuf {
     protoc {
