@@ -1,3 +1,5 @@
+![Message-Streams](readme/mstreams.png)
+
 [![Build](https://github.com/jauntsdn/message-streams-futures-examples/actions/workflows/ci-build.yml/badge.svg)](https://github.com/jauntsdn/message-streams-futures-examples/actions/workflows/ci-build.yml)
 ### Message-Streams with CompletableFutures
 
