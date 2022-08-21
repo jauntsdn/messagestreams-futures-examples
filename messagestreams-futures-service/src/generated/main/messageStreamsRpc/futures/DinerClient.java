@@ -1,17 +1,18 @@
 package futures;
 
 @javax.annotation.Generated(
-    value = "jauntsdn.com rpc compiler (version 1.1.3)",
+    value = "jauntsdn.com rpc compiler (version 1.1.4)",
     comments = "source: service.proto")
 @com.jauntsdn.rsocket.Rpc.Generated(
     role = com.jauntsdn.rsocket.Rpc.Role.CLIENT,
     service = Diner.class)
+@SuppressWarnings("all")
 public final class DinerClient implements Diner {
   private final com.jauntsdn.rsocket.MessageStreams streams;
   private final io.netty.buffer.ByteBufAllocator allocator;
+  private final com.jauntsdn.rsocket.Rpc.Codec rpcCodec;
   private final com.jauntsdn.rsocket.RpcInstrumentation.Factory<futures.Meal> orderInstrumentation;
   private final com.jauntsdn.rsocket.RpcInstrumentation.Factory<Void> payInstrumentation;
-  private final com.jauntsdn.rsocket.Rpc.Codec rpcCodec;
 
   private DinerClient(com.jauntsdn.rsocket.MessageStreams streams, java.util.Optional<com.jauntsdn.rsocket.RpcInstrumentation> instrumentation) {
     this.streams = streams;
