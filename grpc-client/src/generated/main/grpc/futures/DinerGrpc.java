@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.53.0)",
+    value = "by gRPC proto compiler (version 1.54.1)",
     comments = "Source: service.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class DinerGrpc {
@@ -123,45 +123,39 @@ public final class DinerGrpc {
 
   /**
    */
-  public static abstract class DinerImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      */
-    public void order(futures.Order request,
+    default void order(futures.Order request,
         io.grpc.stub.StreamObserver<futures.Meal> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getOrderMethod(), responseObserver);
     }
 
     /**
      */
-    public void pay(futures.Payment request,
+    default void pay(futures.Payment request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPayMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getOrderMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                futures.Order,
-                futures.Meal>(
-                  this, METHODID_ORDER)))
-          .addMethod(
-            getPayMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                futures.Payment,
-                com.google.protobuf.Empty>(
-                  this, METHODID_PAY)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service Diner.
    */
-  public static final class DinerStub extends io.grpc.stub.AbstractAsyncStub<DinerStub> {
+  public static abstract class DinerImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return DinerGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Diner.
+   */
+  public static final class DinerStub
+      extends io.grpc.stub.AbstractAsyncStub<DinerStub> {
     private DinerStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -191,8 +185,10 @@ public final class DinerGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Diner.
    */
-  public static final class DinerBlockingStub extends io.grpc.stub.AbstractBlockingStub<DinerBlockingStub> {
+  public static final class DinerBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<DinerBlockingStub> {
     private DinerBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -220,8 +216,10 @@ public final class DinerGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Diner.
    */
-  public static final class DinerFutureStub extends io.grpc.stub.AbstractFutureStub<DinerFutureStub> {
+  public static final class DinerFutureStub
+      extends io.grpc.stub.AbstractFutureStub<DinerFutureStub> {
     private DinerFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -258,10 +256,10 @@ public final class DinerGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final DinerImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(DinerImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -292,6 +290,25 @@ public final class DinerGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getOrderMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              futures.Order,
+              futures.Meal>(
+                service, METHODID_ORDER)))
+        .addMethod(
+          getPayMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              futures.Payment,
+              com.google.protobuf.Empty>(
+                service, METHODID_PAY)))
+        .build();
   }
 
   private static abstract class DinerBaseDescriptorSupplier
