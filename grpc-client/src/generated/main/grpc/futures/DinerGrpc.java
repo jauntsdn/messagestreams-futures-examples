@@ -5,14 +5,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.54.1)",
+    value = "by gRPC proto compiler (version 1.57.1)",
     comments = "Source: service.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class DinerGrpc {
 
   private DinerGrpc() {}
 
-  public static final String SERVICE_NAME = "futures.Diner";
+  public static final java.lang.String SERVICE_NAME = "futures.Diner";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<futures.Order,
@@ -334,9 +334,9 @@ public final class DinerGrpc {
   private static final class DinerMethodDescriptorSupplier
       extends DinerBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    DinerMethodDescriptorSupplier(String methodName) {
+    DinerMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 
