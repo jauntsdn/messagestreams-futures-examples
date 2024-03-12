@@ -1,5 +1,5 @@
 # This is a Gradle generated file for dependency locking.
 # Manual edits can break the build and are not advised.
 # This file is expected to be part of source control.
-com.jauntsdn.rsocket:rsocket-rpc-idl:1.5.2=protobuf
+com.jauntsdn.rsocket:rsocket-rpc-idl:1.5.4=protobuf
 empty=compileClasspath,compileProtoPath,testCompileClasspath,testCompileProtoPath,testProtobuf
